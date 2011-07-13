@@ -101,6 +101,7 @@ module ActiveMerchant #:nodoc:
         add_amount(result, money, options)
         add_invoice(result, options)
         add_address_verification_data(result, options)
+        add_customer_data(result, options)
         result
       end
       
@@ -179,6 +180,10 @@ module ActiveMerchant #:nodoc:
         xml.add_element("AvsPostCode").text = address[:zip]
       end
       
+      def add_customer_data(xml, options)
+        xml.add_element("ClientInfo").text = options[:ip] unless options[:ip].blank?
+      end
+
       def new_transaction
         REXML::Document.new.add_element("Txn")
       end
