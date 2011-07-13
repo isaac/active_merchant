@@ -33,7 +33,7 @@ class RemotePaymentExpressTest < Test::Unit::TestCase
   end
   
   def test_declined_purchase
-    assert response = @gateway.purchase(176, @credit_card, @options)
+    assert response = @gateway.purchase(176, credit_card('4999999999999202'), @options)
     assert_equal 'The transaction was declined. Funds were not transferred', response.message
     assert_failure response
   end
