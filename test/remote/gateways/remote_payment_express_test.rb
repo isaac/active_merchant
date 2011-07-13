@@ -11,7 +11,8 @@ class RemotePaymentExpressTest < Test::Unit::TestCase
       :order_id => generate_unique_id,
       :billing_address => address,
       :email => 'cody@example.com',
-      :description => 'Store purchase'
+      :description => 'Store purchase',
+      :ip => '127.0.0.1'
     }
     
     @amount = 100
