@@ -71,10 +71,7 @@ class RemotePaymentExpressTest < Test::Unit::TestCase
   end
   
   def test_invalid_login
-    gateway = PaymentExpressGateway.new(
-      :login => '',
-      :password => ''
-    )
+    gateway = PaymentExpressGateway.new(:login => 'LOGIN', :password => 'PASSWORD')
     assert response = gateway.purchase(@amount, @credit_card, @options)
     assert_equal 'DECLINED', response.params["response_text"][0..7]
     assert_failure response
