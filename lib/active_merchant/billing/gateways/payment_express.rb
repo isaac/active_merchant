@@ -30,7 +30,8 @@ module ActiveMerchant #:nodoc:
         :credit         => 'Refund',
         :authorization  => 'Auth',
         :capture        => 'Complete',
-        :validate       => 'Validate'
+        :validate       => 'Validate',
+        :status         => 'Status'
       }
       
       # We require the DPS gateway username and password when the object is created.
@@ -87,6 +88,12 @@ module ActiveMerchant #:nodoc:
         commit(:validate, request)
       end
       
+      def status(options = {})
+        requires!(options, :order_id)
+        request = build_status_request(options) 
+        commit(:status, request)
+      end
+      
       private
       
       def build_purchase_or_authorization_request(money, payment_source, options)
@@ -119,6 +126,12 @@ module ActiveMerchant #:nodoc:
         add_credit_card(result, credit_card)
         add_amount(result, 100, options) #need to make an auth request for $1
         add_token_request(result, options)
+        result
+      end
+      
+      def build_status_request(options)
+        result = new_transaction
+        add_invoice result, options
         result
       end
       
