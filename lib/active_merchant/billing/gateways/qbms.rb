@@ -1,5 +1,3 @@
-require 'securerandom'
-
 module ActiveMerchant #:nodoc:
   module Billing #:nodoc:
     class QbmsGateway < Gateway
@@ -40,8 +38,6 @@ module ActiveMerchant #:nodoc:
       #
       def initialize(options = {})
         requires!(options, :login, :ticket)
-        test_mode = options[:test] || false
-        @options = options
         super
       end
 
@@ -118,7 +114,7 @@ module ActiveMerchant #:nodoc:
       end
 
       private
-      
+
       def hosted?
         @options[:pem]
       end
