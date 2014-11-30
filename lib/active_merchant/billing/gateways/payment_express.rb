@@ -7,6 +7,7 @@ module ActiveMerchant #:nodoc:
     # In Australia DPS supports ANZ, NAB, Westpac, CBA, St George and Bank of South Australia.
     # The Maybank in Malaysia is supported and the Citibank for Singapore.
     class PaymentExpressGateway < Gateway
+      self.ssl_strict = false
       self.default_currency = 'NZD'
       # PS supports all major credit cards; Visa, Mastercard, Amex, Diners, BankCard & JCB.
       # Various white label cards can be accepted as well; Farmers, AirNZCard and Elders etc.
